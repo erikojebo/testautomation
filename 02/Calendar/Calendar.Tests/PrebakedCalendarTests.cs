@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Calendar.DataAccess;
 using Calendar.DTOs;
 using Calendar.Entities;
+using Calendar.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Calendar.Tests
 {
     [TestClass]
-    public class CalendarTests
+    public class PrebakedCalendarTests
     {
         private Person _person;
         private CalendarService _service;
@@ -23,8 +24,7 @@ namespace Calendar.Tests
 
             using (var context = new CalendarContext())
             {
-                context.Database.ExecuteSqlCommand("DELETE FROM CalendarEntries");
-                context.Database.ExecuteSqlCommand("DELETE FROM Persons");
+                context.DeleteEverything();
 
                 _person = new Person
                 {

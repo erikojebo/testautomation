@@ -1,4 +1,6 @@
 ﻿using System;
+using Calendar.DataAccess;
+using Calendar.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Calendar.Tests
@@ -10,6 +12,17 @@ namespace Calendar.Tests
         public void SetUp()
         {
             // Här kan man lägga initialiseringskod som ska köras innan varje test
+
+            // Till exempel skulle man kunna skapa preppa databasen, 
+            // genom att rensa och sen skapa upp det data man vill ha för sitt test
+            using (var context = new CalendarContext())
+            {
+                context.DeleteEverything();
+
+                // Skapa ny testdata i databasen här
+
+                context.SaveChanges();
+            }
         }
 
         // Döp testet till ett tydligt påstående, så man förstår syftet med testet

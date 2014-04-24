@@ -58,7 +58,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CalendarTests.cs" />
+    <Compile Include="Extensions\CalendarContextExtensions.cs" />
+    <Compile Include="PrebakedCalendarTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
