@@ -14,6 +14,6 @@ namespace Calendar.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public IList<CalendarEntry> CalendarEntries { get; set; }
+        public virtual IList<CalendarEntry> CalendarEntries { get; set; }
     }
 }
