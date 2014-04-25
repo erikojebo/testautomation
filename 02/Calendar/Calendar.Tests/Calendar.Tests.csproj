@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="Extensions\CalendarContextExtensions.cs" />
     <Compile Include="ExampleTests.cs" />
-    <Compile Include="PrebakedCalendarTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

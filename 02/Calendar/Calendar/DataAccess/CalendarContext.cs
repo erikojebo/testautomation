@@ -14,6 +14,16 @@ namespace Calendar.DataAccess
             
         }
 
+        public DbSet<Person> Persons
+        {
+            get { return Set<Person>(); }
+        }
+
+        public DbSet<CalendarEntry> CalendarEntries
+        {
+            get { return Set<CalendarEntry>(); }
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>().ToTable("Persons")
