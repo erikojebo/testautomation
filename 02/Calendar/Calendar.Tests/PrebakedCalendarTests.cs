@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Calendar.DataAccess;
 using Calendar.DTOs;
 using Calendar.Entities;
@@ -32,6 +29,9 @@ namespace Calendar.Tests
                     LastName = "Persson"
                 };
 
+                // Lägg till en person i databasen, så att vi har någon att boka möten för.
+                // När personen sparas i databasen får den ett id av SQL Server, och det är det
+                // id:t som vi behöver komma ihåg till dess att vi ska boka möten.
                 context.Set<Person>().Add(_person);
 
                 context.SaveChanges();
@@ -47,7 +47,7 @@ namespace Calendar.Tests
                 StartDate = new DateTime(2015, 1, 1, 10, 30, 0),
                 EndDate = new DateTime(2015, 1, 1, 10, 45, 0),
                 Title = "Daily standup",
-                PersonId = _person.Id
+                PersonId = _person.Id // Här använder vi det id som vi fick av SQL Server
             };
 
             // Act
@@ -56,6 +56,8 @@ namespace Calendar.Tests
             // Assert
             using (var context = new CalendarContext())
             {
+                // Ladda upp personen igen, så att vi får med all ny data som kommit till efter anropet
+                // till WCF-tjänsten
                 var actualPerson = context.Set<Person>().Single(x => x.Id == _person.Id);
 
                 Assert.IsTrue(response.WasSuccessful);

@@ -1,5 +1,6 @@
 ﻿using System;
 using Calendar.DataAccess;
+using Calendar.DTOs;
 using Calendar.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,8 +19,10 @@ namespace Calendar.Tests
             using (var context = new CalendarContext())
             {
                 context.DeleteEverything();
-
-                // Skapa ny testdata i databasen här
+                
+                // Skapa ny testdata i databasen här, t.ex.
+                // _person = new Person() { ... };
+                // context.Set<Person>().Add(_person);
 
                 context.SaveChanges();
             }
