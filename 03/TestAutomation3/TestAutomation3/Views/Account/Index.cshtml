@@ -1,0 +1,20 @@
+﻿@model TestAutomation3.Models.RegistrationModel
+
+<form action="@Url.Action("Register")" method="POST">
+    <fieldset>
+        <legend>Register account</legend>
+            
+        <label>
+            <span class="field-name">Email:</span>
+            @Html.TextBoxFor(x => x.Email)
+            @Html.ValidationMessageFor(x => x.Email)
+        </label>
+        <label>
+            <span class="field-name">Customer number:</span>
+            @Html.TextBoxFor(x => x.CustomerNumber)
+            @Html.ValidationMessageFor(x => x.CustomerNumber)
+        </label>
+
+        <input type="submit" value="Register" />
+    </fieldset>
+</form>

@@ -19,15 +19,6 @@ namespace Calendar
                 {
                     var person = context.Set<Person>().Single(x => x.Id == entry.PersonId);
 
-                    var hasConflictingEntry = person.CalendarEntries.Any(x =>
-                        x.StartDate >= entry.StartDate && x.StartDate <= entry.EndDate ||
-                        x.EndDate >= entry.StartDate && x.EndDate <= entry.EndDate);
-
-                    if (hasConflictingEntry)
-                    {
-                        return new CalendarBookingResponse() { WasSuccessful = false };
-                    }
-
                     var calendarEntry = new CalendarEntry
                     {
                         StartDate = entry.StartDate,
@@ -35,6 +26,14 @@ namespace Calendar
                         Title = entry.Title
                     };
 
+                    var hasConflictingEntry = person.HasSchedulingConflict(calendarEntry);
+
+                    if (hasConflictingEntry)
+                    {
+                        return new CalendarBookingResponse() { WasSuccessful = false };
+                    }
+
+                    
                     person.CalendarEntries.Add(calendarEntry);
 
                     context.SaveChanges();
