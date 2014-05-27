@@ -36,7 +36,7 @@ namespace TestAutomation3.Controllers
 
             _emailService.Send(
                 "Verify email address",
-                string.Format("Hello, please verify your email address using <a href='{0}'>this link</a>", Url.Action("VerifyEmail")),
+                "Hello, please verify your email address using <a href='http://www.somefake.url'>this link</a>",
                 model.Email);
 
             return RedirectToAction("RegisterConfirmation");
